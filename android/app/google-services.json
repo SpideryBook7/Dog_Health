@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "765571825739",
+    "project_id": "dog-health-32e61",
+    "storage_bucket": "dog-health-32e61.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765571825739:android:83135d53fae20690794dce",
+        "android_client_info": {
+          "package_name": "com.doghealth.doghealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "765571825739-khjpb4jp84hfaqs6v2v3vvsi15ob1v2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClLhpvpkWOvqQik9CZOkVNJzKo8hMnTWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "765571825739-khjpb4jp84hfaqs6v2v3vvsi15ob1v2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
