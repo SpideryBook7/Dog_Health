@@ -1,3 +1,4 @@
+import 'package:dog_health/pages/Menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -21,10 +22,13 @@ class _HomePageState extends State<HomePage> {
             Text('Signed in as: ' + user.email!),
             MaterialButton(
               onPressed: () {
-                FirebaseAuth.instance.signOut();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MenuScreen()),
+                );
               },
               color: Colors.deepPurple[200],
-              child: Text('Sign out'),
+              child: Text('Entrar'),
             ),
           ],
         ),
@@ -32,3 +36,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+//  MaterialButton(
+//               onPressed: () {
+//                 FirebaseAuth.instance.signOut();
+//               },
+//               color: Colors.deepPurple[200],
+//               child: Text('Sign out'),
+//             ),

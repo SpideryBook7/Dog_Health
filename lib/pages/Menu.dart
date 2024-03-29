@@ -5,28 +5,6 @@ import 'package:dog_health/pages/Logs.dart';
 import 'package:dog_health/pages/Stadistics.dart';
 
 class MenuScreen extends StatelessWidget {
-  // final user = FirebaseAuth.instance.currentUser!;
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: Center(
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-  //           Text('Signed in as: ' + user.email!),
-              // MaterialButton(
-              //   onPressed: () {
-              //     FirebaseAuth.instance.signOut();
-              //   },
-              //   Color: Colors.red[200],
-                  // child: Text('Sign out'),
-              // )
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
