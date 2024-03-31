@@ -1,5 +1,5 @@
 import 'package:dog_health/pages/Home_page.dart';
-import 'package:dog_health/services/auth_pages.dart';
+import 'package:dog_health/components/auth_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

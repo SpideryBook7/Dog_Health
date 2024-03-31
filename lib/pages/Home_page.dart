@@ -30,18 +30,16 @@ class _HomePageState extends State<HomePage> {
               color: Colors.deepPurple[200],
               child: Text('Entrar'),
             ),
+            MaterialButton(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+              },
+              color: Colors.deepPurple[200],
+              child: Text('Sign out'),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
-//  MaterialButton(
-//               onPressed: () {
-//                 FirebaseAuth.instance.signOut();
-//               },
-//               color: Colors.deepPurple[200],
-//               child: Text('Sign out'),
-//             ),

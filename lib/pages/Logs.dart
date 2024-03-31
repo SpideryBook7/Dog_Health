@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -8,6 +9,7 @@ class RecordsScreen extends StatefulWidget {
 }
 
 class _RecordsScreenState extends State<RecordsScreen> {
+  final user = FirebaseAuth.instance.currentUser!;
   // Datos iniciales de ejemplo
   List<double> temperatureData = [];
   List<double> heartRateData = [];

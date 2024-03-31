@@ -1,12 +1,16 @@
+import 'package:dog_health/pages/Canino_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:dog_health/pages/Canino.dart';
 import 'package:dog_health/pages/Logs.dart';
 import 'package:dog_health/pages/Stadistics.dart';
+import 'package:flutter/services.dart';
 
 class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Hide the system UI elements
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -27,6 +31,7 @@ class _MenuScreenState extends StatefulWidget {
   State<_MenuScreenState> createState() => _MenuScreenStateState();
 }
 
+//Navigation
 class _MenuScreenStateState extends State<_MenuScreenState>
     with TickerProviderStateMixin {
   late final TabController _tabController;
@@ -47,7 +52,7 @@ class _MenuScreenStateState extends State<_MenuScreenState>
       controller: _tabController,
       children: [
         WelcomeScreen(), // Pantalla de bienvenida
-        DogInfoScreen(), // Pantalla de información del perro
+        CaninoList(), // Pantalla de información del perro
         HealthScreen(), // Pantalla de estados de salud
         RecordsScreen(), // Pantalla de registros
       ],
@@ -71,8 +76,8 @@ class _MenuScreenStateState extends State<_MenuScreenState>
                 ],
               ),
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
+                bottomLeft: Radius.circular(3),
+                bottomRight: Radius.circular(3),
               ),
             ),
             child: TabBar(
@@ -100,7 +105,7 @@ class WelcomeScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(1),
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
