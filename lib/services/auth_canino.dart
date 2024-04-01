@@ -18,6 +18,14 @@ Future<List> getCanino() async {
 
 
 
+
+
+
+
+
+
+
+
 //Bd firestoreDatabase reglas
 
 // service cloud.firestore {

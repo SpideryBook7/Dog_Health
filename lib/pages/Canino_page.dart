@@ -29,8 +29,7 @@ class _CaninoListState extends State<CaninoList> {
     for (int i = 0; i < _caninoData.length; i++) {
       await FirebaseFirestore.instance
           .collection('Registro_canino')
-          .doc(
-              'xpDb1VQJamMx9DIw2e8s') // Reemplaza 'documento_$i' con el ID correcto del documento
+          .doc('xpDb1VQJamMx9DIw2e8s') // ID correcto del documento
           .update(_caninoData[i]);
     }
     ScaffoldMessenger.of(context).showSnackBar(
@@ -72,7 +71,7 @@ class _CaninoListState extends State<CaninoList> {
                         _caninoData[index]['Peso'] = double.parse(value);
                       });
                     },
-                    decoration: InputDecoration(labelText: 'Peso'),
+                    decoration: InputDecoration(labelText: 'Peso (kg)'),
                   ),
                   TextFormField(
                     initialValue: canino['Meses'].toString(),
@@ -81,7 +80,7 @@ class _CaninoListState extends State<CaninoList> {
                         _caninoData[index]['Meses'] = int.parse(value);
                       });
                     },
-                    decoration: InputDecoration(labelText: 'Meses'),
+                    decoration: InputDecoration(labelText: 'Meses (1 - 12)'),
                   ),
                   TextFormField(
                     initialValue: canino['Raza'].toString(),
@@ -99,7 +98,7 @@ class _CaninoListState extends State<CaninoList> {
                         _caninoData[index]['Estatura_cm'] = double.parse(value);
                       });
                     },
-                    decoration: InputDecoration(labelText: 'Estatura_cm'),
+                    decoration: InputDecoration(labelText: 'Estatura ( cm )'),
                   ),
                 ],
               ),
