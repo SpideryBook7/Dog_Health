@@ -52,52 +52,50 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Future signUp() async {
     if (passwordConfirmed()) {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
-    }
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: _emailController.text.trim(),
+                password: _passwordController.text.trim());
 
-    try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
-      if (userCredential.user != null) {
-        // Add the user to Firestore
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(userCredential.user!.uid)
-            .set({
-          'email': userCredential.user!.email,
-        });
-      }
-      // User is created
-      print('User created: ${userCredential.user}');
-      // Add the user to Firestore
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(userCredential.user!.uid)
-          .set({
-        'email': userCredential.user!.email,
-      });
-      // Navigate to the menu page
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return MenuScreen();
-          },
-        ),
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      } else {
-        print('Error: ${e.code}');
+        if (userCredential.user != null) {
+          // Agrega el usuario a Firestore
+          await FirebaseFirestore.instance
+              .collection('Usuarios')
+              .doc(userCredential
+                  .user!.uid) // Utiliza el UID del usuario como ID de documento
+              .set({
+            'email': userCredential.user!.email,
+          });
+
+          // Agrega el documento a la colección "Registro_canino"
+          await FirebaseFirestore.instance.collection('Registro_canino').add({
+            'uid': userCredential.user!.uid,
+            'Nombre': '',
+            'Peso': 0,
+            'Meses': 0,
+            'Raza': '',
+            'Estatura_cm': 0.0,
+          });
+        }
+
+        // Navega a la página del menú
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MenuScreen(),
+          ),
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print('La contraseña proporcionada es demasiado débil.');
+        } else if (e.code == 'email-already-in-use') {
+          print('La cuenta ya existe para ese correo electrónico.');
+        } else {
+          print('Error: ${e.code}');
+        }
+      } catch (e) {
+        print('Error al registrar al usuario: $e');
       }
     }
   }

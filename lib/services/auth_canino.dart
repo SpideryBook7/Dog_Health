@@ -1,37 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-FirebaseFirestore db = FirebaseFirestore.instance;
+Future<List<Map<String, dynamic>>> getCanino() async {
+  List<Map<String, dynamic>> canino = [];
 
-Future<List> getCanino() async {
-  List canino = [];
-  CollectionReference collectionReferenceCanino =
-      db.collection('Registro_canino');
+  // Obtener el ID del usuario actualmente autenticado
+  String userId = FirebaseAuth.instance.currentUser!.uid;
 
-  QuerySnapshot queryCanino = await collectionReferenceCanino.get();
+  // Realizar una consulta para obtener solo los documentos del usuario actual
+  QuerySnapshot queryCanino = await FirebaseFirestore.instance
+      .collection('Registro_canino')
+      .where('uid', isEqualTo: userId) // Cambiar 'userId' por 'uid'
+      .get();
 
   queryCanino.docs.forEach((documento) {
-    canino.add(documento.data());
+    canino.add(documento.data() as Map<String, dynamic>);
   });
+
   return canino;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-//Bd firestoreDatabase reglas
-
-// service cloud.firestore {
-//   match /databases/{database}/documents {
-//     match /{document=**} {
-//       allow read, write: if false;
-//     }
-//   }
-// }

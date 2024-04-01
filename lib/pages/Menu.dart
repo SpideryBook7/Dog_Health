@@ -1,5 +1,4 @@
 import 'package:dog_health/pages/Canino_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:dog_health/pages/Logs.dart';
 import 'package:dog_health/pages/Stadistics.dart';
@@ -27,12 +26,10 @@ class MenuScreen extends StatelessWidget {
 }
 
 class _MenuScreenState extends StatefulWidget {
-  
   @override
   State<_MenuScreenState> createState() => _MenuScreenStateState();
 }
 
-//Navigation
 class _MenuScreenStateState extends State<_MenuScreenState>
     with TickerProviderStateMixin {
   late final TabController _tabController;
@@ -54,7 +51,7 @@ class _MenuScreenStateState extends State<_MenuScreenState>
       controller: _tabController,
       children: [
         WelcomeScreen(), // Pantalla de bienvenida
-        CaninoList(), // Pantalla de información del perro
+        CaninoList(),
         HealthScreen(), // Pantalla de estados de salud
         RecordsScreen(), // Pantalla de registros
       ],
