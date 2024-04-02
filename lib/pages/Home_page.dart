@@ -1,9 +1,10 @@
 import 'package:dog_health/pages/Menu.dart';
+import 'package:dog_health/pages/Menu2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,27 +16,69 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple[200],
+        title: Text(
+          '¡Bienvenido!',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 251, 248, 255),
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+      ),
+      backgroundColor: Colors.white, // Fondo blanco
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Signed in as: ' + user.email!),
-            MaterialButton(
+            SizedBox(height: 20),
+            CircleAvatar(
+              backgroundImage: AssetImage('assets/Imagen4.png'),
+              radius: 50,
+            ),
+            SizedBox(height: 20),
+            Text(
+              '¡Hola, ${user.email ?? "usuario"}!',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.deepPurple[400],
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MenuScreen()),
                 );
               },
-              color: Colors.deepPurple[200],
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.deepPurple[400],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+              ),
               child: Text('Entrar'),
             ),
-            MaterialButton(
+            SizedBox(height: 20),
+            OutlinedButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
               },
-              color: Colors.deepPurple[200],
-              child: Text('Sign out'),
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(color: Colors.deepPurple[400]!),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+              ),
+              child: Text('Cerrar sesión'),
             ),
           ],
         ),

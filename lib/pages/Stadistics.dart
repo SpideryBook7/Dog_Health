@@ -103,6 +103,12 @@ class HealthWidget extends StatelessWidget {
                     style: TextStyle(fontSize: 20),
                   ),
                 ),
+                Center(
+                  child: Text(
+                    '$value%',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
               ],
             ),
           ),
