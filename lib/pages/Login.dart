@@ -1,12 +1,10 @@
 // ignore_for_file: use_super_parameters
-import 'package:flutter/cupertino.dart';
+import 'package:dog_health/components/square_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dog_health/pages/ForgotPassword.dart';
-import 'package:dog_health/pages/Menu.dart';
-import 'package:dog_health/services/auth_google.dart';
+import 'package:dog_health/auth/auth_google.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
@@ -168,6 +166,18 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
+                ),
+                SizedBox(height: 25),
+
+                //Google sign in
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //google btn
+                    SquareTile(
+                        onTap: () => signInWithGoogle(),
+                        imagePath: 'assets/google.png')
+                  ],
                 ),
                 SizedBox(height: 25),
 
