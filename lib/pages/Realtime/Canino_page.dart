@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dog_health/auth/auth_canino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CaninoList extends StatefulWidget {
   @override
@@ -61,7 +62,20 @@ class _CaninoListState extends State<CaninoList> {
             .update(_caninoData
                 .first); // Actualiza con el primer (y único) conjunto de datos
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Datos guardados correctamente')),
+          SnackBar(
+            content: Text(
+              'Datos guardados correctamente',
+              style: TextStyle(
+                  color: Colors.white), // Cambiando el color del texto
+            ),
+            backgroundColor: Color.fromARGB(
+                191, 132, 255, 136), // Cambiando el color de fondo
+            duration: Duration(seconds: 2), // Duración de la notificación
+            behavior: SnackBarBehavior.floating, // Estilo flotante
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10), // Ajustando el borde
+            ),
+          ),
         );
       } else {
         // Si no se encontró ningún documento, puedes manejar esta situación según sea necesario
@@ -75,19 +89,17 @@ class _CaninoListState extends State<CaninoList> {
     }
   }
 
+  //body canino
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Información de tu canino'),
-        backgroundColor: Color.fromARGB(190, 63, 168, 255).withOpacity(0.2),
-        centerTitle: true,
-      ),
       body: ListView.builder(
         itemCount: _caninoData.length,
         itemBuilder: (context, index) {
           var canino = _caninoData[index];
           return Card(
+            elevation: 4, // Adding elevation
+            margin: EdgeInsets.all(8), // Adding margin
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -100,8 +112,13 @@ class _CaninoListState extends State<CaninoList> {
                         _caninoData[index]['Nombre'] = value;
                       });
                     },
-                    decoration: InputDecoration(labelText: 'Nombre'),
+                    decoration: InputDecoration(
+                      labelText: 'Nombre',
+                      border: OutlineInputBorder(), // Adding border
+                    ),
+                    style: myTextStyle,
                   ),
+                  SizedBox(height: 8), // Adding space between text fields
                   TextFormField(
                     initialValue: (canino['Peso'] ?? 0).toString(),
                     onChanged: (value) {
@@ -109,9 +126,14 @@ class _CaninoListState extends State<CaninoList> {
                         _caninoData[index]['Peso'] = double.parse(value);
                       });
                     },
-                    decoration: InputDecoration(labelText: 'Peso'),
+                    decoration: InputDecoration(
+                      labelText: 'Peso',
+                      border: OutlineInputBorder(), // Adding border
+                    ),
+                    style: myTextStyle,
                     keyboardType: TextInputType.number,
                   ),
+                  SizedBox(height: 8), // Adding space between text fields
                   TextFormField(
                     initialValue: (canino['Meses'] ?? 0).toString(),
                     onChanged: (value) {
@@ -119,9 +141,14 @@ class _CaninoListState extends State<CaninoList> {
                         _caninoData[index]['Meses'] = int.parse(value);
                       });
                     },
-                    decoration: InputDecoration(labelText: 'Meses'),
+                    decoration: InputDecoration(
+                      labelText: 'Meses',
+                      border: OutlineInputBorder(), // Adding border
+                    ),
+                    style: myTextStyle,
                     keyboardType: TextInputType.number,
                   ),
+                  SizedBox(height: 8), // Adding space between text fields
                   TextFormField(
                     initialValue: canino['Raza'] ?? '',
                     onChanged: (value) {
@@ -129,8 +156,13 @@ class _CaninoListState extends State<CaninoList> {
                         _caninoData[index]['Raza'] = value;
                       });
                     },
-                    decoration: InputDecoration(labelText: 'Raza'),
+                    decoration: InputDecoration(
+                      labelText: 'Raza',
+                      border: OutlineInputBorder(), // Adding border
+                    ),
+                    style: myTextStyle,
                   ),
+                  SizedBox(height: 8), // Adding space between text fields
                   TextFormField(
                     initialValue: (canino['Estatura_cm'] ?? 0.0).toString(),
                     onChanged: (value) {
@@ -138,7 +170,11 @@ class _CaninoListState extends State<CaninoList> {
                         _caninoData[index]['Estatura_cm'] = double.parse(value);
                       });
                     },
-                    decoration: InputDecoration(labelText: 'Estatura_cm'),
+                    decoration: InputDecoration(
+                      labelText: 'Estatura_cm',
+                      border: OutlineInputBorder(), // Adding border
+                    ),
+                    style: myTextStyle,
                     keyboardType: TextInputType.number,
                   ),
                 ],
@@ -153,4 +189,11 @@ class _CaninoListState extends State<CaninoList> {
       ),
     );
   }
+
+  final myTextStyle = GoogleFonts.getFont(
+    'Bebas Neue',
+    fontWeight: FontWeight.bold,
+    fontSize: 19,
+    color: Color.fromARGB(221, 120, 14, 146),
+  );
 }

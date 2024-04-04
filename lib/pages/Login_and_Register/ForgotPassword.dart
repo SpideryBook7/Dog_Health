@@ -26,6 +26,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Colors.deepPurple.shade300,
             content: Text(
                 '¡Se envió el enlace para restablecer la contraseña! Por favor, revisa tu correo electrónico.'),
           );

@@ -1,12 +1,11 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:dog_health/pages/ForgotPassword.dart';
-import 'package:dog_health/pages/Menu2.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // Importa Cloud Firestore
-import 'package:dog_health/pages/Menu.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../Welcome_and_Nab_bar/navigation.dart';
 
 class RegisterPage extends StatefulWidget {
   final VoidCallback showLoginPage;
@@ -127,14 +126,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     fontSize: 52,
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
-                  'Register now',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-                SizedBox(height: 50),
+                SizedBox(height: 30),
 
                 //email textfield
                 Padding(
@@ -180,7 +172,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 SizedBox(height: 10),
-                //confirm password
+
+                //confirm password Textfield
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextField(

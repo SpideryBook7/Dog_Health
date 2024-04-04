@@ -21,6 +21,7 @@ dependencies:
   google_fonts:
   curved_navigation_bar: ^1.0.3
   hidden_drawer_menu: ^3.0.1
+  lottie: ^3.1.0
 
 dev_dependencies:
   change_app_package_name: ^1.1.0

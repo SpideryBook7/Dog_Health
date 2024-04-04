@@ -1,5 +1,5 @@
-import 'package:dog_health/pages/Login.dart';
-import 'package:dog_health/pages/Register.dart';
+import 'package:dog_health/pages/Login_and_Register/Login.dart';
+import 'package:dog_health/pages/Login_and_Register/Register.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {

@@ -1,11 +1,15 @@
+import 'package:dog_health/pages/Realtime/Canino_page.dart';
+import 'package:dog_health/pages/Realtime/HealthScreen.dart';
+import 'package:dog_health/pages/Realtime/Logs.dart';
 import 'package:flutter/material.dart';
-import 'package:dog_health/pages/Logs.dart';
-import 'package:dog_health/pages/Stadistics.dart';
-import 'package:dog_health/pages/Canino_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/services.dart';
 
-class MenuScreen extends StatelessWidget {
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Hide the system UI elements
@@ -16,8 +20,15 @@ class MenuScreen extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: MenuScreenState(),
+      home: MenuScreen(),
     );
+  }
+}
+
+class MenuScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MenuScreenState();
   }
 }
 
@@ -36,7 +47,7 @@ class _MenuScreenStateState extends State<MenuScreenState> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 238, 229, 255),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Color.fromARGB(255, 127, 197, 255),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         color: Colors.deepPurple.shade600,
         animationDuration: Duration(milliseconds: 300),
         onTap: (index) {
@@ -46,9 +57,9 @@ class _MenuScreenStateState extends State<MenuScreenState> {
         },
         items: [
           Icon(Icons.home, color: Colors.white),
+          Icon(Icons.health_and_safety, color: Colors.white),
           Icon(Icons.favorite, color: Colors.white),
-          Icon(Icons.date_range, color: Colors.white),
-          Icon(Icons.settings, color: Colors.white),
+          Icon(Icons.report, color: Colors.white),
         ],
       ),
       body: _getPage(_pageIndex),
@@ -64,7 +75,7 @@ class _MenuScreenStateState extends State<MenuScreenState> {
       case 2:
         return HealthScreen();
       case 3:
-        return RecordsScreen();
+        return LogsScreen();
       default:
         return Container();
     }
@@ -78,11 +89,7 @@ class WelcomeScreen extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(1),
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Colors.blue.withOpacity(0.2), Colors.blue.withOpacity(0.1)],
-        ),
+        color: Colors.white,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

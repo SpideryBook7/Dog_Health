@@ -1,5 +1,4 @@
-import 'package:dog_health/pages/Menu.dart';
-import 'package:dog_health/pages/Menu2.dart';
+import 'package:dog_health/pages/Hidde_menu/Hidden_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +52,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MenuScreen()),
+                  MaterialPageRoute(builder: (context) => HiddenMenu()),
                 );
               },
               style: ElevatedButton.styleFrom(

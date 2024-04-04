@@ -2,7 +2,7 @@
 import 'package:dog_health/components/square_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:dog_health/pages/ForgotPassword.dart';
+import 'package:dog_health/pages/Login_and_Register/ForgotPassword.dart';
 import 'package:dog_health/auth/auth_google.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -86,6 +86,11 @@ class _LoginPageState extends State<LoginPage> {
                       hintText: 'Email',
                       fillColor: Colors.grey[200],
                       filled: true,
+                      errorText: _emailController.text.isNotEmpty &&
+                              !RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
+                                  .hasMatch(_emailController.text.trim())
+                          ? 'Enter a valid email'
+                          : null,
                     ),
                   ),
                 ),
@@ -109,9 +114,14 @@ class _LoginPageState extends State<LoginPage> {
                       hintText: 'Password',
                       fillColor: Colors.grey[200],
                       filled: true,
+                      errorText: _passwordController.text.isNotEmpty &&
+                              _passwordController.text.length < 6
+                          ? 'Password must be at least 6 characters'
+                          : null,
                     ),
                   ),
                 ),
+
                 SizedBox(height: 10),
 
                 Padding(
