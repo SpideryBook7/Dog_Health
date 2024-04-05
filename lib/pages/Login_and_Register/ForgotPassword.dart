@@ -20,15 +20,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   Future<void> passwordReset() async {
     try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: _emailController.text.trim());
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailController.text.trim());
       showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
             backgroundColor: Colors.deepPurple.shade300,
-            content: Text(
-                '¡Se envió el enlace para restablecer la contraseña! Por favor, revisa tu correo electrónico.'),
+            content: Text('¡Se envió el enlace para restablecer la contraseña! Por favor, revisa tu correo electrónico.'),
           );
         },
       );
@@ -49,65 +47,80 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.withOpacity(0.15),
+        backgroundColor: Colors.deepPurple.shade200,
+        elevation: 0, // Remove shadow
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.blue.withOpacity(0.2),
-              Colors.blue.withOpacity(0.1),
+      backgroundColor: Colors.deepPurple.shade200,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              CircleAvatar(
+                backgroundImage: AssetImage('assets/Imagen4.png'),
+                radius: 76.0,
+              ),
+              SizedBox(height: 30.0),
+              _buildStatCard(
+                Icons.wifi_password,
+                'Por favor, escribe tu correo electrónico. Recibirás un enlace para modificar tu contraseña',
+                '',
+                backgroundColor: Colors.deepPurple.shade100,
+              ),
+              SizedBox(height: 20.0),
+              TextField(
+                controller: _emailController,
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'Correo electrónico',
+                  hintStyle: TextStyle(color: Colors.white70),
+                  filled: true,
+                  fillColor: Colors.deepPurple.shade300,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+              SizedBox(height: 50.0),
+              Container(
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                child: ElevatedButton(
+                  onPressed: passwordReset,
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: Text(
+                    'Enviar',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
             ],
           ),
-        ),
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            CircleAvatar(
-              backgroundImage: AssetImage('assets/Imagen4.png'),
-              radius: 76.0,
-            ),
-            SizedBox(height: 30.0),
-            _buildStatCard(
-              Icons.wifi_password,
-              'Por favor, escribe tu correo electrónico. Recibirás un enlace para modificar tu contraseña',
-              '',
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: TextField(controller: _emailController),
-            ),
-            SizedBox(height: 20.0),
-            SizedBox(height: 30.0),
-            Container(
-              height: 60,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              child: ElevatedButton(
-                onPressed: passwordReset,
-                child: Text('Enviar'),
-              ),
-            ),
-          ],
         ),
       ),
     );
   }
 
-  Widget _buildStatCard(IconData icon, String title, String value,
-      {Color? backgroundColor}) {
+  Widget _buildStatCard(IconData icon, String title, String value, {Color? backgroundColor}) {
     return Container(
       padding: EdgeInsets.all(23),
       decoration: BoxDecoration(
-        color: backgroundColor ?? Colors.white,
+        color: backgroundColor ?? Colors.grey,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.6),
+            color: Colors.blueGrey.withOpacity(0.6),
             spreadRadius: 2,
             blurRadius: 5,
             offset: Offset(0, 3),
@@ -116,13 +129,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       ),
       child: Row(
         children: [
-          Icon(icon),
+          Icon(icon, color: Colors.black),
           SizedBox(width: 10),
           Expanded(
             child: Text(
               title,
               style: TextStyle(
                 fontSize: 16,
+                color: Colors.black,
               ),
             ),
           ),

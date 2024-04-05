@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 //hello again
                 Text(
-                  'SpideryBook',
+                  'DOG HEALTH',
                   style: GoogleFonts.bebasNeue(
                     fontSize: 52,
                   ),
@@ -177,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 15),
 
                 //Google sign in
                 Row(
@@ -189,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                         imagePath: 'assets/google.png')
                   ],
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 15),
 
                 //not a member? register now
                 Row(

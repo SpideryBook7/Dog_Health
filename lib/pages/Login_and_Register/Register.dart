@@ -121,12 +121,19 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 //hello again
                 Text(
-                  'SpideryBook',
+                  'DOG HEALTH',
                   style: GoogleFonts.bebasNeue(
                     fontSize: 52,
                   ),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 10),
+                Text(
+                  'Welcome back',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+                SizedBox(height: 50),
 
                 //email textfield
                 Padding(
