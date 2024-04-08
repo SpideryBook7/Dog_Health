@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // Importa Cloud Firestore
@@ -19,7 +18,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  //  text controller
+  // text controller
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmpasswordController = TextEditingController();
@@ -33,14 +32,6 @@ class _RegisterPageState extends State<RegisterPage> {
     super.dispose();
   }
 
-  Future<void> addUserToCollection(String uid, String email) async {
-    await usersCollection.add({
-      'uid': uid,
-      'email': email,
-      'created_at': Timestamp.fromDate(DateTime.now()),
-    });
-  }
-
   bool passwordConfirmed() {
     if (_passwordController.text.trim() ==
         _confirmpasswordController.text.trim()) {
@@ -51,52 +42,102 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future signUp() async {
-    if (passwordConfirmed()) {
-      try {
-        UserCredential userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-                email: _emailController.text.trim(),
-                password: _passwordController.text.trim());
+    if (_emailController.text.trim().isEmpty ||
+        _passwordController.text.trim().isEmpty ||
+        _confirmpasswordController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Por favor llena todos los campos.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
 
-        if (userCredential.user != null) {
-          // Agrega el usuario a Firestore
-          await FirebaseFirestore.instance
-              .collection('Usuarios')
-              .doc(userCredential
-                  .user!.uid) // Utiliza el UID del usuario como ID de documento
-              .set({
-            'email': userCredential.user!.email,
-          });
+    if (!passwordConfirmed()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Las contraseñas no coinciden.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
 
-          // Agrega el documento a la colección "Registro_canino"
-          await FirebaseFirestore.instance.collection('Registro_canino').add({
-            'uid': userCredential.user!.uid,
-            'Nombre': '',
-            'Peso': 0,
-            'Meses': 0,
-            'Raza': '',
-            'Estatura_cm': 0.0,
-          });
-        }
+    if (_passwordController.text.trim().length < 6) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('La contraseña debe tener mínimo 6 caracteres.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
 
-        // Navega a la página del menú
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MenuScreen(),
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim());
+
+      if (userCredential.user != null) {
+        // Agrega el usuario a Firestore
+        await FirebaseFirestore.instance
+            .collection('Usuarios')
+            .doc(userCredential
+            .user!.uid) // Utiliza el UID del usuario como ID de documento
+            .set({
+          'email': userCredential.user!.email,
+        });
+
+        // Agrega el documento a la colección "Registro_canino"
+        await FirebaseFirestore.instance.collection('Registro_canino').add({
+          'uid': userCredential.user!.uid,
+          'Nombre': '',
+          'Peso': 0,
+          'Meses': 0,
+          'Raza': '',
+          'Estatura_cm': 0.0,
+        });
+      }
+
+      // Navega a la página del menú
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MenuScreen(),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('La contraseña proporcionada es demasiado débil.'),
+            backgroundColor: Colors.red,
           ),
         );
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          print('La contraseña proporcionada es demasiado débil.');
-        } else if (e.code == 'email-already-in-use') {
-          print('La cuenta ya existe para ese correo electrónico.');
-        } else {
-          print('Error: ${e.code}');
-        }
-      } catch (e) {
-        print('Error al registrar al usuario: $e');
+      } else if (e.code == 'email-already-in-use') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('La cuenta ya existe para ese correo electrónico.'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error: ${e.code}'),
+            backgroundColor: Colors.red,
+          ),
+        );
       }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error al registrar al usuario: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
 
@@ -105,7 +146,7 @@ class _RegisterPageState extends State<RegisterPage> {
     // Hide the system UI elements
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.teal[100],
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

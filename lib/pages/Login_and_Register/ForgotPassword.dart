@@ -19,19 +19,32 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   Future<void> passwordReset() async {
+    if (_emailController.text.trim().isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text('Por favor, introduce tu correo electrónico.'),
+            backgroundColor: Colors.grey.shade600,
+          );
+        },
+      );
+      return;
+    }
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailController.text.trim());
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: _emailController.text.trim());
       showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
             backgroundColor: Colors.deepPurple.shade300,
-            content: Text('¡Se envió el enlace para restablecer la contraseña! Por favor, revisa tu correo electrónico.'),
+            content: Text(
+                '¡Se envió el enlace para restablecer la contraseña! Por favor, revisa tu correo electrónico.'),
           );
         },
       );
     } on FirebaseAuthException catch (e) {
-      print(e);
       showDialog(
         context: context,
         builder: (context) {
@@ -112,7 +125,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     );
   }
 
-  Widget _buildStatCard(IconData icon, String title, String value, {Color? backgroundColor}) {
+  Widget _buildStatCard(IconData icon, String title, String value,
+      {Color? backgroundColor}) {
     return Container(
       padding: EdgeInsets.all(23),
       decoration: BoxDecoration(
