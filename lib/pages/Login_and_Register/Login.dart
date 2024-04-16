@@ -31,7 +31,8 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
 
-    if (!RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$").hasMatch(_emailController.text.trim())) {
+    if (!RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
+        .hasMatch(_emailController.text.trim())) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Por favor introduce un correo válido.'),
@@ -100,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   //hello again
                   Text(
-                    'DOG HEALTH',
+                    '!Bienvenido!',
                     style: GoogleFonts.bebasNeue(
                       fontSize: 52,
                       color: Colors.grey, // Color de la fuente
@@ -108,14 +109,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    '!Bienvenido!',
-                    style: TextStyle(
-                      fontSize: 18,
+                    '!Inicia sesión!',
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: 26,
                       color: Colors.grey, // Color de la fuente
                     ),
                   ),
-                  SizedBox(height: 50),
-
                   //email textfield
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -131,13 +130,16 @@ class _LoginPageState extends State<LoginPage> {
                           borderSide: BorderSide(color: Colors.deepPurple),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        hintText: 'Email',
-                        hintStyle: TextStyle(color: Colors.white70), // Color del texto de sugerencia
-                        fillColor: Colors.grey.withOpacity(0.5), // Color de fondo con opacidad
+                        hintText: 'Correo',
+                        hintStyle: TextStyle(
+                            color: Colors
+                                .white70), // Color del texto de sugerencia
+                        fillColor: Colors.grey
+                            .withOpacity(0.5), // Color de fondo con opacidad
                         filled: true,
                         errorText: _emailController.text.isNotEmpty &&
-                            !RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
-                                .hasMatch(_emailController.text.trim())
+                                !RegExp(r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
+                                    .hasMatch(_emailController.text.trim())
                             ? 'Enter a valid email'
                             : null,
                       ),
@@ -161,13 +163,16 @@ class _LoginPageState extends State<LoginPage> {
                           borderSide: BorderSide(color: Colors.deepPurple),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        hintText: 'Password',
-                        hintStyle: TextStyle(color: Colors.white70), // Color del texto de sugerencia
-                        fillColor: Colors.grey.withOpacity(0.5), // Color de fondo con opacidad
+                        hintText: 'Contraseña',
+                        hintStyle: TextStyle(
+                            color: Colors
+                                .white70), // Color del texto de sugerencia
+                        fillColor: Colors.grey
+                            .withOpacity(0.5), // Color de fondo con opacidad
                         filled: true,
                         errorText: _passwordController.text.isNotEmpty &&
-                            _passwordController.text.length < 6
-                            ? 'Password must be at least 6 characters'
+                                _passwordController.text.length < 6
+                            ? 'La contraseña debe tener 6 caracteres'
                             : null,
                       ),
                     ),
@@ -192,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                             );
                           },
                           child: Text(
-                            'Forgot Password?',
+                            'Olvide contraseña?',
                             style: TextStyle(
                               color: Colors.deepPurple[400],
                               fontWeight: FontWeight.bold,
@@ -215,11 +220,10 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: BoxDecoration(
                           color: Colors.teal[100],
                           borderRadius: BorderRadius.circular(12),
-
                         ),
                         child: Center(
                           child: Text(
-                            'Sign in',
+                            'Iniciar sesión',
                             style: TextStyle(
                               color: Colors.grey[700],
                               fontWeight: FontWeight.bold,
@@ -249,7 +253,7 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Not a member?',
+                        'No soy miembro?',
                         style: TextStyle(
                           color: Colors.white, // Color de la fuente
                           fontWeight: FontWeight.bold,
@@ -258,7 +262,7 @@ class _LoginPageState extends State<LoginPage> {
                       GestureDetector(
                         onTap: widget.showRegisterPage,
                         child: Text(
-                          '   Register now',
+                          '    Registrarme ahora',
                           style: TextStyle(
                             color: Colors.deepPurple[400],
                             fontWeight: FontWeight.bold,

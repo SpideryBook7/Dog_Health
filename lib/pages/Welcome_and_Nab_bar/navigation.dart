@@ -48,7 +48,7 @@ class _MenuScreenStateState extends State<MenuScreenState> {
       backgroundColor: const Color.fromARGB(255, 238, 229, 255),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        color: Colors.deepPurple.shade600,
+        color: Color.fromARGB(255, 47, 146, 185),
         animationDuration: Duration(milliseconds: 300),
         onTap: (index) {
           setState(() {
@@ -102,8 +102,8 @@ class WelcomeScreen extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text(
-            'Esta aplicación te permite realizar un seguimiento detallado de la salud y el bienestar de tu mascota. Con características como la visualización de la información del canino, el monitoreo de los estados de salud y el estado de registros, tendrás todo lo que necesitas para cuidar a tu amigo peludo.',
-            style: TextStyle(fontSize: 19, color: Colors.black),
+            'Esta aplicación te permite realizar un seguimiento detallado de la salud y el bienestar de tu mascota, información del canino, el monitoreo de los estados de salud y el estado de registros, tendrás todo lo que necesitas para cuidar a tu amigo peludo.',
+            style: TextStyle(fontSize: 16, color: Colors.black),
             textAlign: TextAlign.center,
           ),
         ],

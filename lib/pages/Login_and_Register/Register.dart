@@ -77,15 +77,15 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passwordController.text.trim());
+              email: _emailController.text.trim(),
+              password: _passwordController.text.trim());
 
       if (userCredential.user != null) {
         // Agrega el usuario a Firestore
         await FirebaseFirestore.instance
             .collection('Usuarios')
             .doc(userCredential
-            .user!.uid) // Utiliza el UID del usuario como ID de documento
+                .user!.uid) // Utiliza el UID del usuario como ID de documento
             .set({
           'email': userCredential.user!.email,
         });
@@ -169,7 +169,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Welcome back',
+                  'Registrate ahora!',
                   style: TextStyle(
                     fontSize: 18,
                   ),
@@ -190,7 +190,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderSide: BorderSide(color: Colors.deepPurple),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      hintText: 'Email',
+                      hintText: 'Correo',
                       fillColor: Colors.grey[200],
                       filled: true,
                     ),
@@ -213,7 +213,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderSide: BorderSide(color: Colors.deepPurple),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      hintText: 'Password',
+                      hintText: 'Contraseña',
                       fillColor: Colors.grey[200],
                       filled: true,
                     ),
@@ -236,7 +236,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderSide: BorderSide(color: Colors.deepPurple),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      hintText: 'Confirm password',
+                      hintText: 'Confirmar contraseña',
                       fillColor: Colors.grey[200],
                       filled: true,
                     ),
@@ -258,7 +258,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       child: Center(
                         child: Text(
-                          'Sign Up',
+                          'Registrarme',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -276,7 +276,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'I am a member?',
+                      'Soy miembro?',
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -285,7 +285,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     GestureDetector(
                       onTap: widget.showLoginPage,
                       child: Text(
-                        '   Login now',
+                        '  Iniciar sesión',
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,

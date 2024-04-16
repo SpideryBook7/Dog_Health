@@ -1,3 +1,4 @@
+import 'package:dog_health/components/Home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,6 +11,7 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  final user = FirebaseAuth.instance.currentUser!;
   String _username = 'Usuario';
   String _email = 'usuario@example.com';
 
@@ -32,7 +34,8 @@ class _AccountPageState extends State<AccountPage> {
 
   // Método para obtener el nombre de usuario desde Firestore
   void _getFirestoreUserInfo(String uid) async {
-    DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('Usuarios').doc(uid).get();
+    DocumentSnapshot<Map<String, dynamic>> snapshot =
+        await FirebaseFirestore.instance.collection('Usuarios').doc(uid).get();
     if (snapshot.exists) {
       setState(() {
         _username = snapshot.data()?['Usuario'] ?? 'Usuario';
@@ -96,8 +99,10 @@ class _AccountPageState extends State<AccountPage> {
             ListTile(
               title: Text('Cerrar sesión'),
               trailing: Icon(Icons.logout),
-              onTap: () {
-                _logout(context);
+              onTap: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
               },
             ),
           ],
@@ -179,7 +184,8 @@ class _AccountPageState extends State<AccountPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Confirmar Cambio de Contraseña'),
-          content: Text('¿Estás seguro de cambiar tu contraseña? Se enviará un correo electrónico de confirmación a $_email.'),
+          content: Text(
+              '¿Estás seguro de cambiar tu contraseña? Se enviará un correo electrónico de confirmación a $_email.'),
           actions: [
             TextButton(
               onPressed: () {

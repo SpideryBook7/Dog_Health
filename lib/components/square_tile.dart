@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//for login page//
 class SquareTile extends StatelessWidget {
   final String imagePath;
   final Function()? onTap;

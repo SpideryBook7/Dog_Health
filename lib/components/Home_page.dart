@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple[200],
+        backgroundColor: Colors.blue[200],
         title: Text(
           '¡Bienvenido!',
           style: TextStyle(
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.deepPurple[400],
+                color: Colors.blue[400],
               ),
             ),
             SizedBox(height: 20),
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: Colors.deepPurple[400],
+                backgroundColor: Colors.blue[400],
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                 FirebaseAuth.instance.signOut();
               },
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Colors.deepPurple[400]!),
+                side: BorderSide(color: Colors.blue[400]!),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),

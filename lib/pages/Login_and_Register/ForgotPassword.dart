@@ -60,10 +60,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple.shade200,
+        backgroundColor: Colors.teal[100],
         elevation: 0, // Remove shadow
       ),
-      backgroundColor: Colors.deepPurple.shade200,
+      backgroundColor: Colors.teal[100],
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(30.0),
@@ -80,7 +80,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 Icons.wifi_password,
                 'Por favor, escribe tu correo electrónico. Recibirás un enlace para modificar tu contraseña',
                 '',
-                backgroundColor: Colors.deepPurple.shade100,
+                backgroundColor: Color.fromARGB(255, 237, 227, 255),
               ),
               SizedBox(height: 20.0),
               TextField(
@@ -88,9 +88,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: 'Correo electrónico',
-                  hintStyle: TextStyle(color: Colors.white70),
+                  hintStyle: TextStyle(color: const Color.fromARGB(179, 38, 38, 38)),
                   filled: true,
-                  fillColor: Colors.deepPurple.shade300,
+                  fillColor: Color.fromARGB(255, 243, 243, 243),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,

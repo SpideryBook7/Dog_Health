@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import '../Login_and_Register/Login.dart';
+import 'package:flutter/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -15,7 +15,6 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _darkModeEnabled = false;
   bool _privacyPolicyAccepted = false;
   bool _termsAndConditionsAccepted = false;
-  String _selectedLanguage = 'Español'; // Idioma predeterminado
 
   @override
   void initState() {
@@ -27,11 +26,17 @@ class _SettingsPageState extends State<SettingsPage> {
   void _loadSettingsFromFirestore() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('Usuarios').doc(user.uid).get();
+      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+          .instance
+          .collection('Usuarios')
+          .doc(user.uid)
+          .get();
       if (snapshot.exists) {
         setState(() {
-          _privacyPolicyAccepted = snapshot.data()?['Politicas_privacidad'] ?? false;
-          _termsAndConditionsAccepted = snapshot.data()?['Terminos_y_condiciones'] ?? false;
+          _privacyPolicyAccepted =
+              snapshot.data()?['Politicas_privacidad'] ?? false;
+          _termsAndConditionsAccepted =
+              snapshot.data()?['Terminos_y_condiciones'] ?? false;
         });
       }
     }
@@ -89,7 +94,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     context,
                     'Politicas de Privacidad',
                     privacyPolicyText,
-                        () {},
+                    () {},
                   );
                 }
               },
@@ -110,7 +115,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     context,
                     'Términos y Condiciones',
                     termsAndConditionsText,
-                        () {},
+                    () {},
                   );
                 }
               },
@@ -124,23 +129,15 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             SizedBox(height: 8.0),
+            Divider(),
             ListTile(
-              title: Text('Notificaciones'),
-              trailing: Icon(Icons.notifications),
+              title: Text('Visitar pagina web'),
+              trailing: Icon(Icons.web),
               onTap: () {
-                // Implementa aquí la lógica para gestionar las notificaciones
+                _showPageweb(context);
               },
             ),
             Divider(),
-            ListTile(
-              title: Text('Idioma'),
-              trailing: Icon(Icons.language),
-              onTap: () {
-                _showLanguageDialog(context);
-              },
-            ),
-            Divider(),
-
           ],
         ),
       ),
@@ -149,11 +146,11 @@ class _SettingsPageState extends State<SettingsPage> {
 
   // Método para mostrar el diálogo de aceptación
   void _showAcceptanceDialog(
-      BuildContext context,
-      String title,
-      String content,
-      Function() onAccept,
-      ) {
+    BuildContext context,
+    String title,
+    String content,
+    Function() onAccept,
+  ) {
     showDialog(
       context: context,
       builder: (context) {
@@ -197,47 +194,24 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  // Método para mostrar el diálogo de selección de idioma
-  void _showLanguageDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Seleccionar Idioma'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: [
-                _buildLanguageItem(context, 'Español'),
-                _buildLanguageItem(context, 'Inglés'),
-                _buildLanguageItem(context, 'Francés'),
-                // Agrega más idiomas según sea necesario
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  // Método auxiliar para crear un elemento de idioma en el diálogo
-  Widget _buildLanguageItem(BuildContext context, String language) {
-    return ListTile(
-      title: Text(language),
-      onTap: () {
-        setState(() {
-          _selectedLanguage = language;
-        });
-        Navigator.of(context).pop();
-        // Implementa aquí la lógica para cambiar el idioma
-      },
-    );
+  // Redireccion de pagina web
+  void _showPageweb(BuildContext context) async {
+    const url = 'https://dog-health-integradora.web.app/templates/inicio.html';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   // Método para actualizar el estado de las políticas de privacidad en Firestore
   void _updateFirestorePrivacyPolicy(bool value) async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      await FirebaseFirestore.instance.collection('Usuarios').doc(user.uid).update({'Politicas_privacidad': value});
+      await FirebaseFirestore.instance
+          .collection('Usuarios')
+          .doc(user.uid)
+          .update({'Politicas_privacidad': value});
     }
   }
 
@@ -245,7 +219,10 @@ class _SettingsPageState extends State<SettingsPage> {
   void _updateFirestoreTermsAndConditions(bool value) async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      await FirebaseFirestore.instance.collection('Usuarios').doc(user.uid).update({'Terminos_y_condiciones': value});
+      await FirebaseFirestore.instance
+          .collection('Usuarios')
+          .doc(user.uid)
+          .update({'Terminos_y_condiciones': value});
     }
   }
 
