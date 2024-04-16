@@ -142,10 +142,29 @@ class _LogsScreenState extends State<LogsScreen> {
               ),
               pdfLib.SizedBox(height: 20),
               pdfLib.Text(
-                'Ultimos registros guardados:',
+                'Últimos registros guardados:',
                 style: subtitleStyle,
               ),
-              // Aquí puedes agregar la gráfica si es posible
+              pdfLib.SizedBox(height: 10),
+              pdfLib.Text(
+                'Temperaturas:',
+                style: contentStyle.copyWith(fontWeight: pdfLib.FontWeight.bold),
+              ),
+              for (int i = 0; i < temperatureData.length; i++)
+                pdfLib.Text(
+                  '${i + 1}. ${temperatureData[i]} °C',
+                  style: contentStyle,
+                ),
+              pdfLib.SizedBox(height: 10),
+              pdfLib.Text(
+                'Pulsos:',
+                style: contentStyle.copyWith(fontWeight: pdfLib.FontWeight.bold),
+              ),
+              for (int i = 0; i < heartRateData.length; i++)
+                pdfLib.Text(
+                  '${i + 1}. ${heartRateData[i]} ppm',
+                  style: contentStyle,
+                ),
             ],
           );
         },
