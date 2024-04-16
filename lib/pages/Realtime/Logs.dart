@@ -177,7 +177,14 @@ class _LogsScreenState extends State<LogsScreen> {
     final File file = File(path);
     await file.writeAsBytes(await pdf.save());
 
-    print('PDF guardado en: $path');
+    // Mostrar notificación en la aplicación
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('PDF guardado en: $path'),
+        backgroundColor: Colors.teal,
+        duration: Duration(seconds: 3),
+      ),
+    );
   }
 
   @override
