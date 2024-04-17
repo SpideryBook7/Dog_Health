@@ -59,7 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8.0),
+            SizedBox(height: 3.0),
             SwitchListTile(
               title: Text('Modo oscuro'),
               value: _darkModeEnabled,
@@ -68,6 +68,14 @@ class _SettingsPageState extends State<SettingsPage> {
                   _darkModeEnabled = value!;
                 });
               },
+            ),
+            Text(
+              '                                                        !Proximamente!',
+              style: TextStyle(
+                fontSize: 13.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue[900],
+              ),
             ),
             Divider(),
             SizedBox(height: 16.0),

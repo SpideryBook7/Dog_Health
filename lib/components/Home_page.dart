@@ -2,6 +2,8 @@ import 'package:dog_health/pages/Hidde_menu/Hidden_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/Login_and_Register/Login.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});
 
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(height: 20),
             CircleAvatar(
-              backgroundImage: AssetImage('assets/Imagen4.png'),
+              backgroundImage: AssetImage('assets/circle.png'),
               radius: 50,
             ),
             SizedBox(height: 20),
@@ -67,9 +69,15 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 20),
             OutlinedButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage(showRegisterPage: () {  },)),
+                      (route) => false,
+                );
               },
+
               style: OutlinedButton.styleFrom(
                 side: BorderSide(color: Colors.blue[400]!),
                 shape: RoundedRectangleBorder(

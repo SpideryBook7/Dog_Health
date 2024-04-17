@@ -155,7 +155,7 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 //Logo
                 CircleAvatar(
-                  backgroundImage: AssetImage('assets/Imagen4.png'),
+                  backgroundImage: AssetImage('assets/circle.png'),
                   radius: 76.0,
                 ),
                 SizedBox(height: 20.0),

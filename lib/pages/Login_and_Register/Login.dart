@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/Imagen3.png"), // Ruta de la imagen
+            image: AssetImage("assets/Login.png"), // Ruta de la imagen
             fit: BoxFit.cover,
           ),
         ),
@@ -94,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   //Logo
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/Imagen4.png'),
+                    backgroundImage: AssetImage('assets/circle.png'),
                     radius: 76.0,
                   ),
                   SizedBox(height: 20.0),
@@ -233,18 +233,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 15),
-
-                  //Google sign in
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      //google btn
-                      SquareTile(
-                          onTap: () => signInWithGoogle(),
-                          imagePath: 'assets/google.png')
-                    ],
                   ),
                   SizedBox(height: 15),
 

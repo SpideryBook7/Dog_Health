@@ -72,7 +72,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               CircleAvatar(
-                backgroundImage: AssetImage('assets/Imagen4.png'),
+                backgroundImage: AssetImage('assets/circle.png'),
                 radius: 76.0,
               ),
               SizedBox(height: 30.0),
